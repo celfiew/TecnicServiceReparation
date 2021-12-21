@@ -1,0 +1,66 @@
+@startuml
+
+class Reparation{
+- ArticleName : String
+- BudgetValue : double
+- DeliveryAdress: String
+
++ Reparation(ArticleName : String) : Reparation
++ toString() : String
++ changeAdress(adress: String) : void
++ GiveValueBudget(budget: double) : void
++ addSpareParts(cost: double) : void
++ nextStep() : void;
+
+
+}
+
+interface ReparationState{
++ {abstract} changeAdress() : ReparationState;
++ {abstract} GiveValueBudget() : ReparationState;
++ {abstract} addSpareParts() : ReparationState;
++ {abstract} nextStep() : ReparationState;
+}
+
+
+class InBudget{
++ changeAdress() : void
++ GiveValueBudget() : void;
++ addSpareParts() : void;
++ nextStep() : ReparationState;
+}
+
+class InReparation{
++ changeAdress() : void
++ GiveValueBudget() : void;
++ addSpareParts() : void;
++ nextStep() : ReparationState;
+}
+
+class ForShipping{
++ changeAdress() : void
++ GiveValueBudget() : void;
++ addSpareParts() : void;
++ nextStep() : ReparationState;
+}
+
+class Finalized{
++ changeAdress() : void
++ GiveValueBudget() : void;
++ addSpareParts() : void;
++ nextStep() : ReparationState;
+}
+
+class FactoryStateReparation{
+    + nextState(actualState: ReparationState) : ReparationState
+}
+
+ReparationState <-- Finalized
+ReparationState <-- ForShipping
+ReparationState <-- InReparation
+ReparationState <-- InBudget
+Reparation *-right- "1" ReparationState: - state
+ReparationState .right.> FactoryStateReparation
+
+
+@enduml
