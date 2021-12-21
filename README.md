@@ -2,7 +2,7 @@
 
 ### Description:
 
->A program for a Tecnic Service that has the job of repair things.
+>A program for Tecnic Service a company that has the job of repair things.
 
 
 >I implemented the following DESIGN PATTERNS:
